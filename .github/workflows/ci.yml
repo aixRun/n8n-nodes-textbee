@@ -28,14 +28,14 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          # Node 24 ships npm ≥ 11.5.1 required for Trusted Publishing OIDC.
+          node-version: '24'
           cache: 'npm'
           # Do NOT set registry-url: it writes a fake NODE_AUTH_TOKEN into .npmrc
           # and breaks npm Trusted Publishing (OIDC).
 
-      - name: Upgrade npm for Trusted Publishing
-        # Node 22 ships npm 10.x, which can sign provenance but publishes
-        # anonymously → registry 404. Trusted Publishing needs npm ≥ 11.5.1.
+      - name: Ensure npm for Trusted Publishing
+        # Trusted Publishing needs npm ≥ 11.5.1; stage publish needs npm ≥ 12.
         run: |
           npm install -g npm@latest
           npm --version
@@ -80,13 +80,34 @@ jobs:
 
       - name: Publish to npm with provenance
         if: steps.release.outputs.published == 'true'
-        # Trusted Publisher must use workflow filename ci.yml.
-        # Prefer OIDC (no NPM_TOKEN). A token, if set, overrides OIDC.
+        # Trusted Publisher must match: GitHub owner aixRun, repo n8n-nodes-textbee,
+        # workflow filename ci.yml, no environment name.
+        # After 2026-09-03, new Trusted Publishers default to allowing only
+        # `npm stage publish`. Enable "Allow npm publish" on the package for
+        # fully automated releases; otherwise CI stages and a maintainer
+        # runs `npm stage approve <id>` (2FA) once.
+        # Prefer OIDC (leave NPM_TOKEN unset). A token overrides OIDC.
+        env:
+          RELEASE_MODE: 'true'
+          NPM_CONFIG_PROVENANCE: 'true'
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           if [ -n "${NPM_TOKEN:-}" ]; then
             echo "Warning: NPM_TOKEN is set; OIDC Trusted Publishing will not be used."
             npm config set //registry.npmjs.org/:_authToken "$NPM_TOKEN"
           fi
-          npm run publish:ci
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+          set +e
+          npm publish
+          status=$?
+          set -e
+
+          if [ "$status" -eq 0 ]; then
+            echo "Published to npm with provenance."
+            exit 0
+          fi
+
+          echo "npm publish failed (exit $status)."
+          echo "Falling back to npm stage publish (default Trusted Publisher permission)."
+          npm stage publish
+          echo "Staged successfully. Approve with: npm stage list && npm stage approve <stage-id>"
