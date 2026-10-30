@@ -1,0 +1,78 @@
+{
+	"name": "@aixrun/n8n-nodes-textbee",
+	"version": "0.1.0",
+	"description": "n8n community node to send and receive SMS via textbee",
+	"license": "MIT",
+	"homepage": "https://github.com/aixRun/n8n-nodes-textbee",
+	"keywords": [
+		"n8n-community-node-package",
+		"n8n",
+		"textbee",
+		"sms"
+	],
+	"author": {
+		"name": "aixRun",
+		"email": "info@aixrun.de"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/aixRun/n8n-nodes-textbee.git"
+	},
+	"bugs": {
+		"url": "https://github.com/aixRun/n8n-nodes-textbee/issues"
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"engines": {
+		"node": ">=22.0.0"
+	},
+	"scripts": {
+		"build": "n8n-node build",
+		"build:watch": "tsc --watch",
+		"dev": "n8n-node dev",
+		"lint": "n8n-node lint",
+		"lint:fix": "n8n-node lint --fix",
+		"release": "n8n-node release",
+		"prepublishOnly": "n8n-node prerelease"
+	},
+	"files": [
+		"dist",
+		"LICENSE.md",
+		"NOTICE.md"
+	],
+	"n8n": {
+		"n8nNodesApiVersion": 1,
+		"strict": true,
+		"credentials": [
+			"dist/credentials/TextBeeApi.credentials.js"
+		],
+		"nodes": [
+			"dist/nodes/TextBee/TextBee.node.js",
+			"dist/nodes/TextBeeTrigger/TextBeeTrigger.node.js"
+		]
+	},
+	"devDependencies": {
+		"@commitlint/cli": "^19.8.1",
+		"@commitlint/config-conventional": "^19.8.1",
+		"@n8n/node-cli": "*",
+		"eslint": "9.29.0",
+		"husky": "^9.1.7",
+		"lint-staged": "^15.5.2",
+		"prettier": "3.8.3",
+		"release-it": "20.2.0",
+		"typescript": "5.9.3"
+	},
+	"peerDependencies": {
+		"n8n-workflow": "*"
+	},
+	"lint-staged": {
+		"*.{js,ts,mjs,cjs}": [
+			"prettier --write"
+		],
+		"*.{json,md,yml,yaml}": [
+			"prettier --write"
+		]
+	},
+	"packageManager": "pnpm@11.13.1+sha512.b2fc7683b8a6525414e7d13e1ba28caaddde96bf66ec540bfaeb7e702b81f3e0be4d1f295edf7f9fe0396740a8dce4509c582ddf79891f4543fea32d37645f25"
+}
