@@ -93,18 +93,19 @@ TextBee may retry deliveries. Deduplicate using the `idempotencyKey` field in th
 - Node.js ≥ 22
 - Built with `@n8n/node-cli` for community node verification guidelines (MIT, no runtime dependencies, English UI)
 
-## Publishing
+## CI / Publishing
 
-Releases are driven by **conventional commits** on `main` (`feat:`, `fix:`, `feat!:`, etc.).
+One workflow: [`.github/workflows/ci.yml`](.github/workflows/ci.yml).
 
-1. Merge to `main` with conventional commit messages (enforced by commitlint / husky)
-2. On npm ([aixrun](https://www.npmjs.com/settings/aixrun/packages)), add a Trusted Publisher for this repo’s **`release.yml`** (or set `NPM_TOKEN`)
-3. GitHub Actions runs semantic-release (changelog, version bump, git tag), then publishes `@aixrun/n8n-nodes-textbee` with npm provenance via `n8n-node release`
-4. Optional: tag-triggered republish uses `publish.yml`
-5. After publish, verify: `npx @n8n/scan-community-package @aixrun/n8n-nodes-textbee`
+- **Pull requests:** lint + build
+- **Push to `main`:** lint + build → semantic-release (changelog, version, tag) → npm publish with provenance
 
-Local hooks: `npx husky`  
-Dry-run a release: `npx semantic-release --dry-run`
+Use conventional commits (`feat:`, `fix:`, `feat!:`, …).
+
+On npm ([aixrun](https://www.npmjs.com/settings/aixrun/packages)), set Trusted Publisher to workflow **`ci.yml`** (or set `NPM_TOKEN`).
+
+After publish: `npx @n8n/scan-community-package @aixrun/n8n-nodes-textbee`  
+Local hooks: `npx husky` · dry-run: `npx semantic-release --dry-run`
 
 ## License
 
