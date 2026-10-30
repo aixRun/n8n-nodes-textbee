@@ -5,7 +5,7 @@
 
 Unofficial n8n community node for [textbee](https://textbee.dev) — send and receive SMS through your Android phone over REST and webhooks.
 
-Maintained by [aixRun](https://github.com/aixRun) (`info@aixrun.de`).
+Maintained by [aixRun](https://www.aixrun.de) ([info@axirun.de](`mailto:info@aixrun.de`)).
 
 **Not affiliated with or endorsed by textbee / Nuver Labs.** The textbee name is used only to identify the service this package connects to. This package does not include the textbee logo or other brand assets ([textbee Terms of Service](https://textbee.dev/terms-of-service): MIT covers their code, not their name or logo).
 
@@ -95,13 +95,16 @@ TextBee may retry deliveries. Deduplicate using the `idempotencyKey` field in th
 
 ## Publishing
 
-1. Create the GitHub repo at [aixRun/n8n-nodes-textbee](https://github.com/aixRun/n8n-nodes-textbee)
-2. On npm, under the [aixrun](https://www.npmjs.com/settings/aixrun/packages) org, add a Trusted Publisher for this repo’s `publish.yml` (or set `NPM_TOKEN`)
-3. Run `npm run release` locally (bumps version, tags, pushes)
-4. GitHub Actions publishes `@aixrun/n8n-nodes-textbee` with provenance
+Releases are driven by **conventional commits** on `main` (`feat:`, `fix:`, `feat!:`, etc.).
+
+1. Merge to `main` with conventional commit messages (enforced by commitlint / husky)
+2. On npm ([aixrun](https://www.npmjs.com/settings/aixrun/packages)), add a Trusted Publisher for this repo’s **`release.yml`** (or set `NPM_TOKEN`)
+3. GitHub Actions runs semantic-release (changelog, version bump, git tag), then publishes `@aixrun/n8n-nodes-textbee` with npm provenance via `n8n-node release`
+4. Optional: tag-triggered republish uses `publish.yml`
 5. After publish, verify: `npx @n8n/scan-community-package @aixrun/n8n-nodes-textbee`
 
-Install hooks for local commits: `npx husky`
+Local hooks: `npx husky`  
+Dry-run a release: `npx semantic-release --dry-run`
 
 ## License
 

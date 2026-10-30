@@ -33,7 +33,8 @@
 		"dev": "n8n-node dev",
 		"lint": "n8n-node lint",
 		"lint:fix": "n8n-node lint --fix",
-		"release": "n8n-node release",
+		"release": "semantic-release",
+		"publish:ci": "n8n-node release",
 		"prepublishOnly": "n8n-node prerelease"
 	},
 	"files": [
@@ -56,11 +57,18 @@
 		"@commitlint/cli": "^19.8.1",
 		"@commitlint/config-conventional": "^19.8.1",
 		"@n8n/node-cli": "*",
+		"@semantic-release/changelog": "^6.0.3",
+		"@semantic-release/exec": "^7.1.0",
+		"@semantic-release/git": "^10.0.1",
+		"@semantic-release/github": "^11.0.3",
+		"@semantic-release/npm": "^12.0.2",
+		"conventional-changelog-conventionalcommits": "^7.0.2",
 		"eslint": "9.29.0",
 		"husky": "^9.1.7",
 		"lint-staged": "^15.5.2",
 		"prettier": "3.8.3",
 		"release-it": "20.2.0",
+		"semantic-release": "^24.2.7",
 		"typescript": "5.9.3"
 	},
 	"peerDependencies": {
@@ -73,6 +81,5 @@
 		"*.{json,md,yml,yaml}": [
 			"prettier --write"
 		]
-	},
-	"packageManager": "pnpm@11.13.1+sha512.b2fc7683b8a6525414e7d13e1ba28caaddde96bf66ec540bfaeb7e702b81f3e0be4d1f295edf7f9fe0396740a8dce4509c582ddf79891f4543fea32d37645f25"
+	}
 }
