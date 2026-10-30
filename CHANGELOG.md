@@ -1,3 +1,7 @@
+## <small>1.0.2 (2026-10-30)</small>
+
+* fix(ci): document Trusted Publisher GitHub org casing as aixRun ([7516b58](https://github.com/aixRun/n8n-nodes-textbee/commit/7516b58))
+
 ## <small>1.0.1 (2026-10-30)</small>
 
 * fix(ci): fall back to npm stage publish for Trusted Publisher defaults ([21d24a6](https://github.com/aixRun/n8n-nodes-textbee/commit/21d24a6))
