@@ -5,7 +5,7 @@
 
 Unofficial n8n community node for [textbee](https://textbee.dev) — send and receive SMS through your Android phone over REST and webhooks.
 
-Maintained by [aixRun](https://www.aixrun.de) ([info@axirun.de](`mailto:info@aixrun.de`)).
+Maintained by [aixRun](https://www.aixrun.de) ([info@aixrun.de](mailto:info@aixrun.de)).
 
 **Not affiliated with or endorsed by textbee / Nuver Labs.** The textbee name is used only to identify the service this package connects to. This package does not include the textbee logo or other brand assets ([textbee Terms of Service](https://textbee.dev/terms-of-service): MIT covers their code, not their name or logo).
 
