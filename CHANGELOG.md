@@ -1,3 +1,8 @@
+## <small>1.0.3 (2026-10-30)</small>
+
+* fix(ci): mint GitHub App token to push releases past protected main ([389dc7b](https://github.com/aixRun/n8n-nodes-textbee/commit/389dc7b))
+* chore: fix email typo ([eaa0533](https://github.com/aixRun/n8n-nodes-textbee/commit/eaa0533))
+
 ## <small>1.0.2 (2026-10-30)</small>
 
 * fix(ci): document Trusted Publisher GitHub org casing as aixRun ([7516b58](https://github.com/aixRun/n8n-nodes-textbee/commit/7516b58))
