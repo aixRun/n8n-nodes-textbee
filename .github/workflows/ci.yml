@@ -80,8 +80,12 @@ jobs:
 
       - name: Publish to npm with provenance
         if: steps.release.outputs.published == 'true'
-        # Trusted Publisher must match: GitHub owner aixRun, repo n8n-nodes-textbee,
-        # workflow filename ci.yml, no environment name.
+        # Trusted Publisher (GitHub Actions) fields are case-sensitive:
+        #   Organization or user: aixRun  (GitHub owner; NOT aixrun)
+        #   Repository: n8n-nodes-textbee
+        #   Workflow filename: ci.yml
+        #   Environment: leave empty
+        # Package name stays @aixrun/... — npm scopes cannot contain capitals.
         # After 2026-09-03, new Trusted Publishers default to allowing only
         # `npm stage publish`. Enable "Allow npm publish" on the package for
         # fully automated releases; otherwise CI stages and a maintainer
