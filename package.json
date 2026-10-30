@@ -1,6 +1,6 @@
 {
 	"name": "@aixrun/n8n-nodes-textbee",
-	"version": "0.1.0",
+	"version": "1.0.0",
 	"description": "n8n community node to send and receive SMS via textbee",
 	"license": "MIT",
 	"homepage": "https://github.com/aixRun/n8n-nodes-textbee",
