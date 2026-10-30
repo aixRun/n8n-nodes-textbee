@@ -16,7 +16,7 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/aixRun/n8n-nodes-textbee.git"
+		"url": "git+https://github.com/aixRun/n8n-nodes-textbee.git"
 	},
 	"bugs": {
 		"url": "https://github.com/aixRun/n8n-nodes-textbee/issues"
