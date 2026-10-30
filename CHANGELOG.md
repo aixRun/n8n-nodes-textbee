@@ -1,3 +1,7 @@
+## <small>1.0.1 (2026-10-30)</small>
+
+* fix(ci): fall back to npm stage publish for Trusted Publisher defaults ([21d24a6](https://github.com/aixRun/n8n-nodes-textbee/commit/21d24a6))
+
 ## 1.0.0 (2026-10-30)
 
 * fix(ci): use npm 11+ for trusted publishing OIDC ([25a290b](https://github.com/aixRun/n8n-nodes-textbee/commit/25a290b))
